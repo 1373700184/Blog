@@ -1,0 +1,196 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Blog.cshtml";
+}
+
+@*<div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    </div>*@
+
+@*------------------------------------------------------------------轮播·开始·---------------------------------------------------*@
+
+<div class="banner-slider-cover d-flex align-items-center">
+    <div class="container">
+        <div class="banner-slider owl-carousel">
+            <!-- Banner Slide -->
+            <div class="banner-slide">
+                <div class="row align-items-center">
+                    <div class="col-md-6 order-2 order-md-1">
+                        <!-- Banner Text -->
+                        <div class="banner-slide-text">
+                            <p class="category"><a href="#">Fashion</a></p>
+                            <h1>Understanding The Background Of Fashion</h1>
+                            <p class="desc">Donec dapibus mauris id odio ornare tempus. Duis sit amet accumsan justo, quis tempor ligula. Quisque quis pharetra felis. Ut quis consequat orci, at consequat felis. Suspendisse auctor laoreet placerat. Nam et risus non lacus dignissim lacinia sit amet nec eros. </p>
+                            <a href="blog-details.html" class="btn btn-primary">View More</a>
+                        </div>
+                        <!-- End of Banner Text -->
+                    </div>
+                    <div class="col-md-6 order-1 order-md-2">
+                        <!-- Banner Image -->
+                        <div class="banner-slide-image">
+                            <img src="/assets/images/banner/1.jpg" alt="" class="img-fluid">
+                        </div>
+                        <!-- End of Banner Image -->
+                    </div>
+                </div>
+            </div>
+            <!-- End of Banner Slide -->
+            <!-- Banner Slide -->
+            <div class="banner-slide">
+                <div class="row align-items-center">
+                    <div class="col-md-6 order-2 order-md-1">
+                        <!-- Banner Text -->
+                        <div class="banner-slide-text">
+                            <p class="category"><a href="#">Fashion</a></p>
+                            <h1>Feel The Love, And Things on My Mind</h1>
+                            <p class="desc">Donec dapibus mauris id odio ornare tempus. Duis sit amet accumsan justo, quis tempor ligula. Quisque quis pharetra felis. Ut quis consequat orci, at consequat felis. Suspendisse auctor laoreet placerat. Nam et risus non lacus dignissim lacinia sit amet nec eros. </p>
+                            <a href="blog-details.html" class="btn btn-primary">View More</a>
+                        </div>
+                        <!-- End of Banner Text -->
+                    </div>
+                    <div class="col-md-6 order-1 order-md-2">
+                        <!-- Banner Image -->
+                        <div class="banner-slide-image">
+                            <img src="/assets/images/banner/2.jpg" alt="" class="img-fluid">
+                        </div>
+                        <!-- End of Banner Image -->
+                    </div>
+                </div>
+            </div>
+            <!-- End of Banner Slide -->
+            <!-- Banner Slide -->
+            <div class="banner-slide">
+                <div class="row align-items-center">
+                    <div class="col-md-6 order-2 order-md-1">
+                        <!-- Banner Text -->
+                        <div class="banner-slide-text">
+                            <p class="category"><a href="#">Fashion</a></p>
+                            <h1>Blaak Attack Earns Boels First 2019 Victory </h1>
+                            <p class="desc">Donec dapibus mauris id odio ornare tempus. Duis sit amet accumsan justo, quis tempor ligula. Quisque quis pharetra felis. Ut quis consequat orci, at consequat felis. Suspendisse auctor laoreet placerat. Nam et risus non lacus dignissim lacinia sit amet nec eros. </p>
+                            <a href="blog-details.html" class="btn btn-primary">View More</a>
+                        </div>
+                        <!-- End of Banner Text -->
+                    </div>
+                    <div class="col-md-6 order-1 order-md-2">
+                        <!-- Banner Image -->
+                        <div class="banner-slide-image">
+                            <img src="/assets/images/banner/3.jpg" alt="" class="img-fluid">
+                        </div>
+                        <!-- End of Banner Image -->
+                    </div>
+                </div>
+            </div>
+            <!-- End of Banner Slide -->
+        </div>
+
+        <!-- Banner Dots Slider -->
+        <div class="banner-slider-dots owl-carousel"></div>
+    </div>
+    <!-- End of Banner Dots Slider -->
+</div>
+
+@*------------------------------------------------------------------轮播·完·---------------------------------------------------*@
+
+
+
+@*------------------------------------------------------------------热门·开始·---------------------------------------------------*@
+
+<section class="pt-120 pb-10">
+    <div class="container">
+        <!-- Section Title -->
+        <div class="section-title text-center">
+            <h2>热门 Top1</h2>
+        </div>
+        <!-- Section Title -->
+
+        <div class="row">
+            <div class="col-lg-6 order-lg-2">
+                <!-- Post -->
+                <div class="post-default post-has-bg-img">
+                    <div class="post-thumb">
+                        <a href="blog-details.html">
+                            <div data-bg-img="/assets/images/blog/4.jpg"></div>
+                        </a>
+                    </div>
+                    <div class="post-data">
+                        <!-- Category -->
+                        <div class="cats"><a href="category-result.html">时尚</a></div>
+                        <!-- Title -->
+                        <div class="title">
+                            <h2><a href="blog-details.html">了解时尚背景</a></h2>
+                        </div>
+                        <!-- Post Meta -->
+                        <ul class="nav meta align-items-center">
+                            <li class="meta-author">
+                                <img src="/assets/images/blog/author.jpg" alt="" class="img-fluid">
+                                <a href="#">亚历克斯·加里</a>
+                            </li>
+                            <li class="meta-date"><a href="#">2 Feb 2019</a></li>
+                            <li class="meta-comments"><a href="#"><i class="fa fa-comment"></i> 2</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- End of Post -->
+            </div>
+            <div class="col-lg-6 order-lg-1">
+                <!-- Post -->
+                <div class="post-default post-has-no-thumb">
+                    <div class="post-data">
+                        <!-- Category -->
+                        <div class="cats"><a href="category-result.html">时尚</a></div>
+                        <!-- Title -->
+                        <div class="title">
+                            <h2><a href="blog-details.html">了解时尚背景</a></h2>
+                        </div>
+                        <!-- Post Meta -->
+                        <ul class="nav meta align-items-center">
+                            <li class="meta-author">
+                                <img src="/assets/images/blog/author.jpg" alt="" class="img-fluid">
+                                <a href="#">亚历克斯·加里</a>
+                            </li>
+                            <li class="meta-date"><a href="#">2 Feb 2019</a></li>
+                            <li class="meta-comments"><a href="#"><i class="fa fa-comment"></i> 2</a></li>
+                        </ul>
+                        <!-- Post Desc -->
+                        <div class="desc">
+                            <p>
+                                背景如果你没有很好的学历背景，那你最好有很厉害的工作背景。毕竟在互联网媒体，新浪的背书还是很厉害的....
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of Post -->
+                <!-- Post -->
+                <div class="post-default post-has-no-thumb">
+                    <div class="post-data">
+                        <!-- Category -->
+                        <div class="cats"><a href="category-result.html">Travel</a></div>
+                        <!-- Title -->
+                        <div class="title">
+                            <h2><a href="blog-details.html">30 Things to Do Before You Turn 30 Travel Bucket List</a></h2>
+                        </div>
+                        <!-- Post Meta -->
+                        <ul class="nav meta align-items-center">
+                            <li class="meta-author">
+                                <img src="/assets/images/blog/author.jpg" alt="" class="img-fluid">
+                                <a href="#">Alex Garry</a>
+                            </li>
+                            <li class="meta-date"><a href="#">2 Feb 2019</a></li>
+                            <li class="meta-comments"><a href="#"><i class="fa fa-comment"></i> 2</a></li>
+                        </ul>
+                        <!-- Post Desc -->
+                        <div class="desc">
+                            <p>
+                                背景如果你没有很好的学历背景，那你最好有很厉害的工作背景。毕竟在互联网媒体，新浪的背书还是很厉害的....
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of Post -->
+            </div>
+        </div>
+    </div>
+</section>
+
+@*------------------------------------------------------------------热门·完·---------------------------------------------------*@
