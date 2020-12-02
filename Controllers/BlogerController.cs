@@ -12,5 +12,9 @@ namespace Blog.Controllers
         {
             return View();
         }
+        public IActionResult EditBloger()
+        {
+            return View();
+        }
     }
 }

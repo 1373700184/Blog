@@ -117,12 +117,12 @@ input:-webkit-autofill:active {
   opacity: 1 !important;
 }
 
-iframe {
+/*iframe {
   width: 100%;
   height: 347px;
   border: 0px;
   overflow: hidden;
-}
+}*/
 
 button:focus,
 input:focus,
