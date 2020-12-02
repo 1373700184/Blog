@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,6 +8,7 @@ namespace Blog.Models
 {
     public class UserInfo
     {
+        [Key] //主键 
         public int Id { get; set; }
 
         /// <summary>
@@ -32,6 +34,11 @@ namespace Blog.Models
         public string Realname { get; set; }
 
         /// <summary>
+        /// 邮箱
+        /// </summary>
+        public string Email { get; set; }
+
+        /// <summary>
         /// 电话号
         /// </summary>
         public string Phone { get; set; }
@@ -54,7 +61,7 @@ namespace Blog.Models
 
         public DateTime UpdateTime { get; set; }
         public DateTime AddTime { get; set; }
-        public DateTime DeleteTime { get; set; }
+        public DateTime? DeleteTime { get; set; }
         
 
     }

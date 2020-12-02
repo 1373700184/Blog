@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Blog.Controllers
 {
-    public class MixController : Controller
+    public class MixController : ControllerBase
     {
         private readonly Logger logger;
         public IActionResult Index()
@@ -36,7 +36,6 @@ namespace Blog.Controllers
                    
                 };
             }
-
                 return RedirectToAction("EditMix", new { text = "ok" }); 
         }
         [HttpPost]

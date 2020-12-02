@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,6 +8,7 @@ namespace Blog.Models
 {
     public class Mix
     {
+        [Key] //主键
         public int PKID { get; set; }
 
         /// <summary>
@@ -58,7 +60,7 @@ namespace Blog.Models
 
         public DateTime UpdateTime { get; set; }
         public DateTime AddTime { get; set; }
-        public DateTime DeleteTime { get; set; }
+        public DateTime? DeleteTime { get; set; }
 
     }
 }
