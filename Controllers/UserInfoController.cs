@@ -11,6 +11,10 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using Newtonsoft.Json;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Blog.Controllers
 {
@@ -20,30 +24,51 @@ namespace Blog.Controllers
         public IActionResult Index()
         {
             return View();
-        } 
+        }
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
+        }
+
+        //[Authorize]
         public IActionResult Login(EFLogin user)
         {
             string error = null;
-            if (ModelState.IsValid)
+            if (user.Username!=null)
             {
                
                 using (SQLContext DB = new SQLContext())
                 {
-                    var userinfo = DB.UserInfo.Where(a => (a.Email == user.Username && a.Username == user.Username && a.Phone == user.Username && a.Realname == user.Username) || (a.Status == 0)).FirstOrDefault();
+                    var userinfo = DB.UserInfo.Where(a =>(a.Email == user.Username || a.Username == user.Username || a.Phone == user.Username || a.Realname == user.Username) && (a.Status == 0)).FirstOrDefault();
                     if (userinfo == null)
                     {
                         error = "无此用户或者已删除";
                     }
-                    else if (userinfo!=null|| userinfo.Password != user.Password)
+                    else if (userinfo!=null & userinfo.Password != user.Password)
                     {
                         error = "密码错误";
                     }
                     else
                     {
-                        MemoryStream ms = new MemoryStream();
-                        IFormatter formatter = new BinaryFormatter();
-                        formatter.Serialize(ms, userinfo); 
-                        HttpContext.Session.Set("User", ms.GetBuffer());
+                        string token = DateTime.Now.ToString();  //登录成功后生成的token，用于验证登录有效性
+                        var claims = new List<Claim>()
+                        {
+                         new Claim(ClaimTypes.Name,userinfo.Username)
+                         };
+                        var userPrincipal = new ClaimsPrincipal(new ClaimsIdentity(claims, token));
+                         HttpContext.SignInAsync("Cookie", userPrincipal,
+                          new Microsoft.AspNetCore.Authentication.AuthenticationProperties
+                          {
+                              ExpiresUtc = DateTime.UtcNow.AddHours(12),
+                              IsPersistent = true,
+                              AllowRefresh = false
+                          });
+                        string jsonStr = JsonConvert.SerializeObject(userinfo, Formatting.Indented);
+                        
+                        HttpContext.Session.SetInt32("Id", userinfo.Id);
+                        HttpContext.Session.SetString("Name", userinfo.Username);
+                        HttpContext.Session.SetString("User",jsonStr);
                         return RedirectToAction("Index", "Home");
                     }
                 };

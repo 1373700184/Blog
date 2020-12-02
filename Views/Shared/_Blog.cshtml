@@ -106,15 +106,16 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="menu-item-has-children">
-                                    <a href="#">页面 </a>
+                                <li class="menu-item-has-children" style="display:@(string.IsNullOrWhiteSpace(ViewBag.RealName)?"none":"block" )">
+                                    <a href="#">@ViewBag.RealName </a>
                                     <ul class="sub-menu">
-                                        <li><a href="categories.html">类别</a></li>
-                                        <li><a href="search-result.html">搜索</a></li>
-                                        <li><a href="404.html">404 Error</a></li>
+                                        <li><a href="404.html">我的博客</a></li>
+                                        @*<li><a href="categories.html">重置密码</a></li>*@
+                                        <li><a href="/UserInfo/Logout">退出登录</a></li>
+
                                     </ul>
                                 </li>
-                                <li><a href="contact.html">联系</a></li>
+                                <li style="display:@(!string.IsNullOrWhiteSpace(ViewBag.RealName)?"none":"block")"><a href="/UserInfo/Login">请登录</a></li>
                             </ul>
                         </div>
                         <!-- End of Nav Menu -->
@@ -216,6 +217,9 @@
     <script src="~/assets/js/custom.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/ueditor.all.js"></script>
+    <script src="~/js/ueditor.all.min.js"></script>
+    <script src="~/js/ueditor.config.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 </body>
