@@ -4,12 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using UEditor.Core;
 
 namespace Blog
 {
@@ -27,20 +25,6 @@ namespace Blog
         {
             services.AddControllersWithViews();
             services.AddSession();
-            services.AddAuthentication(options =>
-            {
-                options.DefaultChallengeScheme = "Cookie";
-                options.DefaultSignInScheme = "Cookie";
-                options.DefaultAuthenticateScheme = "Cookie";
-            })
-             .AddCookie("Cookie", m =>
-            {
-                m.LoginPath = new PathString("/UserInfo/Login");
-               // m.AccessDeniedPath = new PathString("/Manage/CPanel/Forbidden");
-                m.LogoutPath = new PathString("/UserInfo/Logout");
-                m.Cookie.Path = "/";
-            });
-            services.AddUEditorService();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

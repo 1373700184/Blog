@@ -17,8 +17,6 @@ namespace Blog.Other
         }
         public virtual DbSet<UserInfo> UserInfo { get; set; }
         public virtual DbSet<Mix> Mix { get; set; }
-        public virtual DbSet<Bloger> Bloger { get; set; }
-        public virtual DbSet<Comment> Comment { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
