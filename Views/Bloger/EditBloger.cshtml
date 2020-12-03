@@ -3,34 +3,108 @@
     ViewData["Title"] = "EditBloger";
     Layout = "~/Views/Shared/_Blog.cshtml";
 }
-
-<h1>EditBloger</h1>
+@model Bloger
+    <style>
+        .base {
+            border-radius: 20px;
+            background-color: #fff6f6;
+            height: 200px;
+            padding:  30px;
+        }
+    </style>
 <div class="newsletter-cover">
     <div class="nl-bg-ol"></div>
     <div class="container">
-        <div id="container" name="container" type="text/plain">
-            欢迎使用Ueditor.Core  原创来自www.luofenming.com
+        <div class="newsletter pt-80 pb-80">
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1">
+                    <form action="/Bloger/EditBloger" method="post" novalidate enctype="multipart/form-data" onsubmit = "return Check()">
+                        <div class="input-group mb-5">
+                            <div class="input-group-append w-25">
+                                <h3 style="line-height:60px"> 标题：</h3>
+                            </div>
+                            <input type="text" class="form-control" asp-for="Title" style="border-radius:20px" placeholder="好好想一想吧">
+
+                        </div>
+                        <div class="input-group mb-5">
+                            <div class="input-group-append w-25">
+                                <h3 style="line-height:60px"> 概述：</h3>
+                            </div>
+                            <textarea type="text" class="base w-75" asp-for="Briefly" style="border-radius:20px" placeholder="简单的介绍下吧">
+                            </textarea>
+                        </div>
+                        <div class="input-group mb-5 row">
+                            <div class="col-lg-4 col-md-12 col-sm-12 col-xl-12 ">
+                                <h3 style="line-height:60px"> 背景：</h3>
+                            </div>
+                            <input style="display:none" type="file" name="file" class="pull-left" id="file" accept=".png,.jpg,.gif,.pdf" onchange="changepic()" value="上传图片" />
+                            <div id="div" class="col-lg-8 col-md-12 col-sm-12 col-xl-12 " style=" border-radius: 20px; background-color: #fff6f6;text-align:center;height:auto;width:100%">
+                                    <img id="showpic"  src="~/img/addic.png" onclick="selectpic()" title="单击添加图片" />
+                               
+                            </div>
+                        </div>
+                        <div id="container" name="container" type="text/plain">
+                            <h3>请写下您的喜悦：</h3>
+                            <input type="text" class="form-control" asp-for="Contents" style="display:none">
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 @section Scripts
     {
+    <script src="/assets/js/jquery-1.12.1.min.js"></script>
     <script src="~/ueditor/ueditor.config.js"></script>
     <script src="~/ueditor/ueditor.all.min.js"></script>
     <script type="text/javascript">
+
         var ue = UE.getEditor('container', {
             initialFrameHeight: 300,
 
-        });</script>
+        });
+      
+        function selectpic() {
+            $("#file").click()
+        }
+
+        function Check() {
+            var ue = UE.getContent();
+            ue.ready(function () {
+                //设置编辑器的内容
+                ue.setContent('hello');
+                //获取html内容，返回: <p>hello</p>
+                var html = ue.getContent();
+                //获取纯文本内容，返回: hello
+                var txt = ue.getContentTxt();
+            });
+        }
+
+        function changepic() {
+            fs = document.getElementById('file').files;
+
+            var img = ""
+            var result = "";
+            var imgg = "";
+            $('#div').html("")
+            //$("#tete").css("display", "none")
+            for (var i = 0; i < fs.length; i++) {
+
+                f = fs[i];
+                var reads = new FileReader()
+                reads.readAsDataURL(f);
+                if (f.type == "image/jpg" || f.type == "image/jpeg" || f.type == "image/png" || f.type == "image/gif") {
+                    reads.onload = function (e) {
+                        img = '<img src=' + this.result + ' style="width:200px" onclick="selectpic()" title="单击添加图片" />'
+                        $("#div").append(img)
+
+                    };
+                }
+            }
+
+        }
+
+    </script>
 }
-    @*var ue = UE.getContent();
-        //对编辑器的操作最好在编辑器ready之后再做
-        ue.ready(function() {
-            //设置编辑器的内容
-            ue.setContent('hello');
-            //获取html内容，返回: <p>hello</p>
-            var html = ue.getContent();
-            //获取纯文本内容，返回: hello
-            var txt = ue.getContentTxt();
-        });*@
