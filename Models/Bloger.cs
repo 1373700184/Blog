@@ -42,7 +42,7 @@ namespace Blog.Models
         /// <summary>
         /// 内容类别（Mix）
         /// </summary>
-        public string Mid { get; set; }
+        public int Mid { get; set; }
 
         /// <summary>
         /// 状态 0 正常 -1删除
