@@ -16,4 +16,8 @@
     <PackageReference Include="UEditor.Core" Version="1.0.6" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="upload\" />
+  </ItemGroup>
+
 </Project>

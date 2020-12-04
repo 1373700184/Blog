@@ -1,0 +1,149 @@
+﻿@{
+    ViewData["Title"] = "List";
+    Layout = "~/Views/Shared/_Blog.cshtml";
+    int count = Convert.ToInt32(ViewData["Count"]);
+    int page = Convert.ToInt32(ViewData["Page"]);
+    int index = Convert.ToInt32(ViewData["Index"]);
+}
+@model List<EFBloger>
+<style type="text/css">
+    ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+        color:#f3ecec;
+        font-size: 8px;
+    }
+
+    :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+        color: #f3ecec;
+        font-size: 8px;
+    }
+
+    ::-moz-placeholder { /* Mozilla Firefox 19+ */
+        color: #f3ecec;
+        font-size: 8px;
+    }
+
+    :-ms-input-placeholder { /* Internet Explorer 10-11 */
+        color: #f3ecec;
+        font-size: 8px;
+    }
+</style>
+<div class="page-title">
+    <div class="container">
+        <h2>@ViewData["UserName"]--主页</h2>
+        <ul class="nav">
+            <li><a href="/Home/Index">首页</a></li>
+            <li><a href="#">博客</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="container pt-120 pb-90">
+    <div class="row">
+        @if (Model != null)
+        {
+        <div class="col-md-4 col-sm-6">
+            <!-- Post -->
+            <div class="post-default">
+                <div class="post-thumb">
+                    <a href="blog-details.html">
+                        <img src="/assets/images/blog/small/1.jpg" alt="" class="img-fluid">
+                    </a>
+                </div>
+                <div class="post-data">
+
+                    <!-- Category -->
+                    <div class="cats"><a href="category-result.html">Love</a></div>
+                    <!-- Title -->
+                    <div class="title">
+                        <h2><a href="blog-details.html">A Funny Thing That Happens In Relationships</a></h2>
+                    </div>
+                    <!-- Post Meta -->
+                    <ul class="nav meta align-items-center">
+                        <li class="meta-author">
+                            <img src="/assets/images/blog/author.jpg" alt="" class="img-fluid">
+                            <a href="#">Alex Garry</a>
+                        </li>
+                        <li class="meta-date"><a href="#">2 Feb 2019</a></li>
+                        <li class="meta-comments"><a href="#"><i class="fa fa-comment"></i> 2</a></li>
+                    </ul>
+                    <!-- Post Desc -->
+                    <div class="desc">
+                        <p>
+                            Integer at faucibus urna. Nullam condimentum leo id elit sagittis auctor. Curabitur elementum nunc...
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        }
+        <!-- End of Post -->
+    </div>
+
+
+</div>
+
+<!-- Post Pagination -->
+<form action="/Bloger/List">
+    <div class="post-pagination d-flex justify-content-center">
+        <a href="#"><i class="fa fa-angle-left"></i></a>
+        @if (page < 6)
+        {
+            for (int i = 1; i < page + 1; i++)
+            {
+                <a href="#" class="@(index==i?"current":"")">i</a>
+            }
+        }
+        @if (page > 6)
+        {
+            if (index < 3)
+            {
+                for (int i = 1; i < page + 1; i++)
+                {
+                    <a href="#" class="@(index == 1 ? "current" : "")">1</a>
+                    <a href="#" class="@(index ==2 ? "current" : "")">2</a>
+                    <a href="#" class="@(index == 3 ? "current" : "")">3</a>
+                    <a href="#" class="@(index == 4 ? "current" : "")">5</a>
+                    <a href="#" class="@(index == 5 ? "current" : "")">5</a>
+                }
+            }
+            if (index + 3 > page)
+            {
+                <a href="#" class="@(index == page-4 ? "current" : "")">@(page-4)</a>
+                <a href="#" class="@(index == page-3 ? "current" : "")">@(page-3)</a>
+                <a href="#" class="@(index == page-2 ? "current" : "")">@(page-2)</a>
+                <a href="#" class="@(index == page-1 ? "current" : "")">@(page-1)</a>
+                <a href="#" class="@(index == page ? "current" : "")">@(page)</a>
+
+            }
+            else
+            {
+                <a href="#" )">@(index - 2)</a>
+                <a href="#" )">@(index - 1)</a>
+                <a href="#" class="current" )">@(index)</a>
+                <a href="#">@(index + 1)</a>
+                <a href="#">@(index + 2)</a>
+            }
+        }
+        <a href="#"><i class="fa fa-angle-right"></i></a>
+        <input type="number" name="number" style="width:100px;height:50px;" placeholder="每页数量" />
+        <p style="padding-top:5px ;font-size:8px">
+            @ViewData["Count"]/@ViewData["Page"]页<br />总数/页
+        </p>
+        <input type="hidden" id="index" name="index" />
+        <input type="submit" id="submit" style="display:none" />
+    </div>
+</form>
+<!-- End of Post Pagination -->
+<script src="/assets/js/jquery-1.12.1.min.js"></script>
+<script type="text/javascript">
+
+    $("form a").click(function ()       
+    {
+        $("#index").val = $(this).html();
+        $("#submit").click();
+    });
+   
+</script>
+
+
