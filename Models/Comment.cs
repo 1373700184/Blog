@@ -19,6 +19,7 @@ namespace Blog.Models
         /// 谁的（UserInfo）
         /// </summary>
         public int Uid { get; set; }
+        public int Bid { get; set; }
 
         /// <summary>
         /// 内容

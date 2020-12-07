@@ -9,22 +9,48 @@ using Blog.Models;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Blog.Other;
+using Blog.Models.EFModel;
 
 namespace Blog.Controllers
 {
     public class BlogerController : Controller
     {
 
-
         private readonly IWebHostEnvironment _hostingEnvironment;
         public BlogerController(IWebHostEnvironment hostingEnvironment)
         {
             _hostingEnvironment = hostingEnvironment;
         }
+        public  string UpFile(IFormFile file)
+        {
+            //获取文件名后缀
+            string extName = Path.GetExtension(file.FileName).ToLower();
+            //获取保存目录的物理路径
+            if (System.IO.Directory.Exists(_hostingEnvironment.WebRootPath + "/upload/bgpic/") == false)//如果不存在就创建images文件夹
+            {
+                System.IO.Directory.CreateDirectory(_hostingEnvironment.WebRootPath + "/upload/bgpic/");
+            }
+            string path = _hostingEnvironment.WebRootPath+"/upload/bgpic/"; //path为某个文件夹的绝对路径，不要直接保存到数据库
+                                                                        //    string path = "F:\\TgeoSmart\\Image\\";
+                                                                        //生成新文件的名称，guid保证某一时刻内图片名唯一（文件不会被覆盖）
+            string fileNewName = Guid.NewGuid().ToString();
+            string ImageUrl = path + fileNewName + extName;
+
+            using (var stream = new FileStream(ImageUrl, FileMode.Create))
+            {
+                file.CopyToAsync(stream);
+            }
+            return ImageUrl= "/upload/bgpic/"+ fileNewName + extName; ;
+        }
         public IActionResult Index()
         {
-            
-            return View();
+            Bloger bloger = new Bloger();
+            using (SQLContext DB = new SQLContext())
+            {
+                bloger = DB.Bloger.FirstOrDefault();
+            }
+
+                return View(bloger);
         }
         public IActionResult List(int index=1,int number=24)
         {            
@@ -65,10 +91,11 @@ namespace Blog.Controllers
         {
             string filehead = DateTime.Now.ToString("yyyyMMddHHmmss");
 
+           
             if (file != null) 
             {
-                bloger.Backpic= Other.Other.UpFile(file);
-                bloger.Mid = ",1";
+                bloger.Backpic= UpFile(file);
+                bloger.Mid = 1;
                 bloger.Status = 0;
                 bloger.AddTime= bloger.UpdateTime = DateTime.Now;
                 using (SQLContext DB=new SQLContext())
@@ -88,6 +115,27 @@ namespace Blog.Controllers
             }
             return View(bloger);
         }
-       
+
+        public IActionResult Details(int id=1) 
+        {
+            EFBlogDetails mo =null;
+            try
+            {
+                using (SQLContext DB = new SQLContext())
+                {
+                    mo.Blog = null;
+                    mo.BlogComments = null;
+                    mo.Blog = DB.Bloger.Where(a => a.PKid == id && a.Status == 0).FirstOrDefault();
+                    mo.BlogComments = DB.Comment.Where(a => a.Bid == id && a.Status == 0).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex.Message);
+                throw ex;
+            }
+                return View(mo);
+        }
+
     }
 }

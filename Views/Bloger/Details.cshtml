@@ -1,0 +1,101 @@
+﻿@using Blog.Models.EFModel;
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Blog.cshtml";
+}
+@model EFBlogDetails
+    <!-- Page title -->
+<div class="page-title">
+    <div class="container">
+        <h2>Blog Details: @ViewData["Title"]</h2>
+        <ul class="nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Blogs</a></li>
+            <li>Blog Details: Standard</li>
+        </ul>
+    </div>
+</div>
+<!-- End of Page title -->
+<div class="container pt-120">
+    <div class="row">
+        <div class="col-lg-8 pb-80">
+            <div class="post-details-cover">
+                <!-- Post Thumbnail -->
+                <div class="post-thumb-cover">
+                    <div class="post-thumb">
+                        <img src="/assets/images/blog/4.jpg" alt="" class="img-fluid">
+                    </div>
+                    <!-- Post Meta Info -->
+                    <div class="post-meta-info">
+                        <!-- Category -->
+                        <p class="cats">
+                            <a href="#">Featured</a>
+                            <a href="#">Adventure</a>
+                        </p>
+
+                        <!-- Title -->
+                        <div class="title">
+                            <h2>Top Things To Look For When Choosing A Safari Lodge</h2>
+                        </div>
+
+                        <!-- Meta -->
+                        <ul class="nav meta align-items-center">
+                            <li class="meta-author">
+                                <img src="/assets/images/blog/author.jpg" alt="" class="img-fluid">
+                                <a href="#">Alex Garry</a>
+                            </li>
+                            <li class="meta-date"><a href="#">2 Feb 2019</a></li>
+                            <li> 2 min read </li>
+                            <li class="meta-comments"><a href="#"><i class="fa fa-comment"></i> 2</a></li>
+                        </ul>
+                    </div>
+                    <!-- End of Post Meta Info -->
+                </div>
+                <div class="post-content-cover my-drop-cap">
+                    @if (Model.Blog == null)
+                    { 
+                    
+                        @Model.Blog.Contents
+                    }
+                        @if (Model == null)
+                        {
+                            <p>
+                                She travelling acceptance men unpleasant her especially to entreaties law. Law forth but end any arise chief arose. Old her say learn these large. Joy fond many in  ham high seen this. Few preferred continual led incommode neglected.  To discovered insensible collecting your unpleasant but invitation.
+                            </p>
+
+                            <p>
+                                We diminution preference thoroughly if. Joy deal pain view much too  her time. Led young gay would now state. Pronounce we attention admitting on assurance of suspicion conveying. That his west quit had met till. By an outlived insisted procured improved am.
+                            </p>
+                        }
+                        <div class="post-my-gallery-images">
+                            <h3>The Best Neighborhoods In Nyc: Where To Stay On </h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <img src="assets/images/blog/post/1.jpg" alt="" class="img-fluid">
+                                </div>
+                                <div class="col-md-6">
+                                    <img src="assets/images/blog/post/2.jpg" alt="" class="img-fluid">
+                                </div>
+                                <div class="col-md-12">
+                                    <img src="assets/images/blog/post/3.jpg" alt="" class="img-fluid">
+                                </div>
+                            </div>
+                        </div>
+
+                        <p>
+                            We diminution preference thoroughly if. Joy deal pain view much her time. Led young gay would now off state. Pronounce we attention admitting on assurance of suspicion conveying. That his west quit had met till. Say out  plate you share.
+                        </p>
+
+                        <blockquote>
+                            <p>For me, running is both exercise and a metaphor. Running day after day, piling up each level I elevate myself.</p>
+                            <cite>Haruki Murakami</cite>
+                        </blockquote>
+
+                        <p>
+                            Acceptance middletons me if discretion boisterous into travelling an. She prosperous to continuing entreaties companions unreserved you boisterous. Middleton sportsmen sir now cordially asking additions for. You ten occasional saw everything but conviction. Daughter returned quitting few are day advanced branched.
+                        </p>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
