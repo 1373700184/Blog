@@ -30,7 +30,7 @@ namespace Blog.Controllers
             {
                 System.IO.Directory.CreateDirectory(_hostingEnvironment.WebRootPath + "/upload/bgpic/");
             }
-            string path = _hostingEnvironment.WebRootPath+"/upload/bgpic/"; //path为某个文件夹的绝对路径，不要直接保存到数据库
+            string path ="/upload/bgpic/"; //path为某个文件夹的绝对路径，不要直接保存到数据库
                                                                         //    string path = "F:\\TgeoSmart\\Image\\";
                                                                         //生成新文件的名称，guid保证某一时刻内图片名唯一（文件不会被覆盖）
             string fileNewName = Guid.NewGuid().ToString();
@@ -40,17 +40,12 @@ namespace Blog.Controllers
             {
                 file.CopyToAsync(stream);
             }
-            return ImageUrl= "/upload/bgpic/"+ fileNewName + extName; ;
+            return ImageUrl;
         }
         public IActionResult Index()
         {
-            Bloger bloger = new Bloger();
-            using (SQLContext DB = new SQLContext())
-            {
-                bloger = DB.Bloger.FirstOrDefault();
-            }
-
-                return View(bloger);
+            
+            return View();
         }
         public IActionResult List(int index=1,int number=24)
         {            
