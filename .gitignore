@@ -339,6 +339,5 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 /upload/image
-/Views/Bloger
 /upload
 /wwwroot/upload
