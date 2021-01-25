@@ -13,7 +13,7 @@ using Blog.Models.EFModel;
 
 namespace Blog.Controllers
 {
-    public class BlogerController : Controller
+    public class BlogerController : ControllerBase
     {
 
         private readonly IWebHostEnvironment _hostingEnvironment;
@@ -74,7 +74,8 @@ namespace Blog.Controllers
                                    Title = o.Title,
                                    Mname = m.MixName,
                                    Datestr = o.UpdateTime.ToString("yy-MMM-dd"),
-                                   Backpic = o.Backpic
+                                   Backpic = o.Backpic,
+                                   PKid=o.PKid
 
                                }).Skip((index - 1) * number).Take(number).ToList();
                 }
@@ -111,15 +112,13 @@ namespace Blog.Controllers
             return View(bloger);
         }
 
-        public IActionResult Details(int id=1) 
+        public IActionResult Details(int id=3) 
         {
-            EFBlogDetails mo =null;
+            EFBlogDetails mo=new EFBlogDetails();
             try
             {
                 using (SQLContext DB = new SQLContext())
                 {
-                    mo.Blog = null;
-                    mo.BlogComments = null;
                     mo.Blog = DB.Bloger.Where(a => a.PKid == id && a.Status == 0).FirstOrDefault();
                     mo.BlogComments = DB.Comment.Where(a => a.Bid == id && a.Status == 0).ToList();
                 }

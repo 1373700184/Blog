@@ -18,7 +18,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Blog.Controllers
 {
-    public class UserInfoController : Controller
+    public class UserInfoController : ControllerBase
     {
         private static readonly Logger logger;
         public IActionResult Index()

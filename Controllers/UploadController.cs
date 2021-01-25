@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Blog.Controllers
 {
-    public class UploadController : Controller
+    public class UploadController : ControllerBase
     {
         public IActionResult Index()
         {

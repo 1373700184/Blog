@@ -9,7 +9,7 @@ using UEditor.Core;
 
 namespace Blog.Controllers
 {
-    public class UEditorController : Controller
+    public class UEditorController : ControllerBase
     {
         private readonly UEditorService _ueditorService;
         public UEditorController(UEditorService ueditorService)
